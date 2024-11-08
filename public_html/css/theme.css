@@ -2,7 +2,7 @@
 
     Colors 
 
-    #166F22  Green
+    #e0115f  Rubee
     
     #505050  Dark Grey |Tertiary
     #9E9E9E  Light Grey |Depth
@@ -14,7 +14,7 @@
 
 
 /* Background */
-.bg-green { background-color: #166F22;}
+.bg-rubee { background-color: #e0115f;}
 .bg-dgrey { background-color: #505050;}
 .bg-lgrey { background-color: #9E9E9E;}
 .bg-white { background-color: #FFFFFF;}
@@ -22,7 +22,7 @@
 
 
 /* Text */
-.text-green { color: #166F22; text-decoration: none !important;}
+.text-rubee { color: #e0115f; text-decoration: none !important;}
 .text-dgrey { color: #505050; text-decoration: none !important;}
 .text-lgrey { color: #9E9E9E; text-decoration: none !important;}
 .text-white { color: #FFFFFF; text-decoration: none !important;}
@@ -55,12 +55,12 @@
     border-radius: 15px;
 }
 
-.btn-green,
-.btn-green:hover, 
-.btn-green:active,
-.btn-green:visited,
-.btn-green:focus {
-    background-color: #166F22;
+.btn-rubee
+.btn-rubee:hover, 
+.btn-rubee:active,
+.btn-rubee:visited,
+.btn-rubee:focus {
+    background-color: #e0115f;
     color: #FFFFFF;
 }
 
