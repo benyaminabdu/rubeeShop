@@ -1,0 +1,221 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path_for('admin.products') }}" class="text-black">Products</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products.details',{'productID': data.product.productID}) }}" class="text-rubee">{{ data.product.title }}</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6">
+                <div align="right">
+                    <a href="{{ path_for('admin.products.details', {'productID': data.product.productID }) }}" class="btn btn-accent ml-2">Details</a>
+                    <a href="{{ path_for('admin.products.price', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Prices</a>
+                    <a href="{{ path_for('admin.products.inventory', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Inventory</a>
+                    <a href="{{ path_for('admin.products.media', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Media</a>
+                    <a href="{{ path_for('admin.products.variance', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Variance</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-7">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Title</td>
+                            <td>{{ data.product.title }}</td>
+                            <td>
+                                <button type="button" class="btn btn-accent btn-sm" data-toggle="modal" data-target="#title">
+                                    Change
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{ data.product.description |raw }}</td>
+                            <td>
+                                <button type="button" class="btn btn-accent btn-sm" data-toggle="modal" data-target="#title">
+                                    Change
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Category</td>
+                            <td>{{ data.product.category.title }}</td>
+                            <td>
+                                <button type="button" class="btn btn-accent btn-sm" data-toggle="modal" data-target="#changeCategory">
+                                    Change
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Subcategory</td>
+                            <td>{{ data.product.subcategory.title }}</td>
+                            <td>
+                                <button type="button" class="btn btn-accent btn-sm" data-toggle="modal" data-target="#changeSubcategory">
+                                    Change
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Audit Log</td>
+                            <td colspan="2">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ data.product.createdBy }}
+                                        <br />
+                                        {{ data.product.createdAt }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {% if (data.product.lastUpdatedBy == "" or data.product.lastUpdatedBy == null ) %}
+                                            -
+                                        {% else %}
+                                            {{ data.product.lastUpdatedBy }}
+                                            <br />
+                                            {{ data.product.lastUpdatedAt }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>
+                                {% if data.product.isActive == 1 %}
+                                    <span class="text-accent">Active</span>
+                                {% else %}
+                                    <span class="text-black">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <center>
+                                    <a href="{{ path_for('admin.products.toggle',{"productID": data.product.productID}) }}" class="btn btn-accent btn-sm">Toggle</a>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="title" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ path_for('admin.products.edit') }}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="display: none;">
+                            <select name="productID">
+                                <option value="{{ data.product.productID }}">{{ data.product.productID }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" name="title" placeholder="Title" class="form-control" min="3" max="30" value="{{ data.product.title }}" required />
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea name="description" class="form-control" id="editor" rows="6" placeholder="Write Description Here">{{ data.product.description }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-accent" value="Save changes">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="changeCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ path_for('admin.products.changeCategory') }}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <div class="form-group">
+                            <h6>Current Category: <span class="bold700 text-accent">{{ data.product.category.title }}</span></h6>
+                        </div>
+                        <div style="display: none;">
+                            <select name="productID">
+                                <option value="{{ data.product.productID }}">{{ data.product.productID }}</option>
+                            </select>
+                        </div>
+                        <br />
+                        <div class="form">
+                            <label>Select New Category</label>
+                            <select name="categoryID" class="form-control">
+                                {% for category in data.categories %}
+                                    <option value="{{ category.categoryID }}">{{ category.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <br />
+                            <h6 style="color: red;">Changing Category will Set Subcategory to null. You should manually Select Subcategory Again.</h6>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-accent" value="Change Category">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="changeSubcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ path_for('admin.products.changeSubcategory') }}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Subcategory</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <div class="form-group">
+                            <h6>Current Subcategory: <span class="bold700 text-accent">{{ data.product.subcategory.title }}</span></h6>
+                        </div>
+                        <div style="display: none;">
+                            <select name="productID">
+                                <option value="{{ data.product.productID }}">{{ data.product.productID }}</option>
+                            </select>
+                        </div>
+                        <br />
+                        <div class="form">
+                            <label>Select New Subcategory</label>
+                            <select name="subcategoryID" class="form-control">
+                                {% for subcategory in data.subcategories %}
+                                    <option value="{{ subcategory.subcategoryID }}">{{ subcategory.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-accent" value="Change Subcategory">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

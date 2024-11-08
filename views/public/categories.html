@@ -1,0 +1,36 @@
+{% extends "public/layout.html" %}
+
+{% block content %}
+
+    <div class="container my-5">
+        <div class="row my-5">
+            <div class="col-md-12">
+                <h4>Categories</h4>
+            </div>
+        </div>
+        <div class="row my-5">
+            {% for category in data.categories %}
+                <div class="col-12 col-sm-12 col-md-6">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-5">
+                                <a href="{{ path_for('category',{"categoryID": category.categoryID}) }}">
+                                    <img src="{{ base_url() }}/images/{{ category.image }}.jpg" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-md-7" style="background-color: #F6F6F6;">
+                                <div class="card-body">
+                                    <a href="{{ path_for('category',{"categoryID": category.categoryID}) }}">
+                                        <h4 class="card-title text-black">{{ category.title }}</h4>
+                                        <p class="text-black">{{ category.productCount }} Products</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

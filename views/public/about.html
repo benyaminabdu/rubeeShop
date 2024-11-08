@@ -1,0 +1,25 @@
+{% extends "public/layout.html" %}
+
+{% block content %}
+
+    <div class="container my-5">
+        <div class="row my-5">
+            <div class="card mb-3" style="width: 100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-7">
+                        <div class="card-body p-5">
+                            <h4 class="card-title bold600">About</h4>
+                            <p class="card-text">
+                                Ecopia Plc is a For Profit Social Organisation headquartered in Addis Ababa, Ethiopia. Ecopia was founded in 2006 by Dr. Mitslal Kifleyesus-Matschie and Tigist Mengistu. Ecopia stands for 'Ecological Products of Ethiopia' and for high-quality natural foods and cosmetics that are produced using sustainable methods in a socially and environmentally friendly manner.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{{ base_url() }}/images/mitslal.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

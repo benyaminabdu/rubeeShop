@@ -1,0 +1,67 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path_for('admin.products') }}" class="text-black">Products</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products.details',{'productID': data.product.productID}) }}" class="text-rubee">{{ data.product.title }}</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6">
+                <div align="right">
+                    <a href="{{ path_for('admin.products.details', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Details</a>
+                    <a href="{{ path_for('admin.products.price', {'productID': data.product.productID }) }}" class="btn btn-accent ml-2">Prices</a>
+                    <a href="{{ path_for('admin.products.inventory', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Inventory</a>
+                    <a href="{{ path_for('admin.products.media', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Media</a>
+                    <a href="{{ path_for('admin.products.variance', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Variance</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="jumbotron mt-5">
+                    <h5>Current Price</h5>
+                    <h1>{{ data.product.price }}</h1>
+                    <br />
+                    <button type="button" class="btn btn-accent" data-toggle="modal" data-target="#changePrice">
+                        Change
+                    </button>
+                    <div class="modal fade" id="changePrice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="{{ path_for('admin.products.changePrice') }}" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Price</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div style="display: none;">
+                                            <select name="productID">
+                                                <option value="{{ data.product.productID }}">{{ data.product.productID }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <input type="number" name="price" placeholder="Price" class="form-control" value="{{ data.product.price }}" required />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-accent" value="Save Changes">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

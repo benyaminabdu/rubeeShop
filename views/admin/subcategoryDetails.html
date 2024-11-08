@@ -1,0 +1,137 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path_for('admin.categories') }}" class="text-black">Categories</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.categories.details',{'categoryID': data.category.categoryID}) }}" class="text-accent">{{ data.category.title }}</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.categories.subcategory.details',{'categoryID': data.category.categoryID,'subcategoryID': data.subcategory.subcategoryID}) }}" class="text-accent">{{ data.subcategory.title }}</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-7">
+                <table class="table">
+                    <tr>
+                        <td>Title</td>
+                        <td>{{ data.subcategory.title }}</td>
+                        <td>
+                            <center>    
+                                <button type="button" class="btn btn-accent btn-sm" data-toggle="modal" data-target="#edit">
+                                    Change
+                                </button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{ data.subcategory.description|raw }}</td>
+                        <td>
+                            <center>
+                                <button type="button" class="btn btn-accent btn-sm" data-toggle="modal" data-target="#edit">
+                                    Change
+                                </button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Parent</td>
+                        <td>
+                            {{ data.category.title }}
+                        </td>
+                        <td>
+                            <center>-</center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Images</td>
+                        <td>
+                            <a href="{{ base_url() }}/images/{{ data.subcategory.image }}.jpg" class="text-rubee" target="_blank">View</a>
+                        </td>
+                        <td>
+                            <center>
+                                <button class="btn btn-accent btn-sm">Change</button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Audit Log</td>
+                        <td colspan="2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ data.subcategory.createdBy }}
+                                    <br />
+                                    {{ data.subcategory.createdAt }}
+                                </div>
+                                <div class="col-md-6">
+                                    {% if (data.subcategory.lastUpdatedBy == "" or data.subcategory.lastUpdatedBy == null) %}
+                                        -
+                                    {% else %}
+                                        {{ data.subcategory.lastUpdatedBy }}
+                                        <br />
+                                        {{ data.subcategory.lastUpdatedAt }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            {% if data.subcategory.isActive == 1 %}
+                                <span class="text-accent">Active</span>
+                            {% else %}
+                                <span class="text-black">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <center>
+                                <a href="{{ path_for('admin.subcategory.toggle',{"subcategoryID": data.subcategory.subcategoryID}) }}" class="btn btn-accent btn-sm">Toggle</a>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ path_for('admin.subcategories.edit') }}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="display: none;">
+                            <select name="categoryID">
+                                <option value="{{ data.subcategory.subcategoryID }}">{{ data.subcategory.subcategoryID }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" name="title" placeholder="Title" class="form-control" min="3" max="30" value="{{ data.subcategory.title }}" required />
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea name="description" class="form-control" id="editor" rows="6" placeholder="Write Description Here">{{ data.subcategory.description }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-accent" value="Save Changes">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

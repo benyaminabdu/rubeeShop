@@ -1,0 +1,70 @@
+.footer {
+    background-color: #166F22;
+}
+.socialLinks {
+    margin-right: 10px;
+}
+.links {
+    list-style-type: none;
+    display: block;
+}
+.links li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.categoryHero {
+    min-height: 300px;
+    width: 100%;
+    border-radius: 20px;
+    background-size: cover;
+    background-origin: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 50px;
+}
+
+.cardCart{
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+
+@media(max-width:767px){
+    .card{
+        margin: 3vh auto;
+    }
+}
+
+.cart{
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+
+@media(max-width:767px){
+    .cart{
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+    }
+}
+
+
+.main{
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+.col-2, .col{
+    padding: 0 1vh;
+}
+.back-to-shop{
+    margin-top: 40px;
+}

@@ -1,0 +1,52 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Orders</li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.orders.pending') }}" class="text-rubee">Pending Orders</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6">
+                <div align="right">
+                    <a href="{{ path_for('admin.orders.fulfilled') }}" class="btn btn-accent">Fulfilled Orders</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered" id="table">
+                    <thead>
+                        <tr>
+                            <td>Order ID</td>
+                            <td>Name</td>
+                            <td>Phone</td>
+                            <td>Payment Method</td>
+                            <td>Amount</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in data.orders %}
+                            <tr>
+                                <td>{{ order.orderID }}</td>
+                                <td>{{ order.firstName }} {{ order.lastName }}</td>
+                                <td>{{ order.phone }}</td>
+                                <td>{{ order.paidWith }}</td>
+                                <td>{{ order.amount }}</td>
+                                <td><a href="{{ path_for('admin.orders.details',{'orderID': order.orderID}) }}" class="btn btn-accent btn-sm">View Order</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

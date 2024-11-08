@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Ecopia Store</title>
+        <link rel="stylesheet" href="{{ base_url() }}/css/global.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/theme.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/landing.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/ecopia.css">
+    </head>
+    <body>
+
+        <div class="wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-landing mx-5">
+                <a class="navbar-brand" href="{{ path_for('landing') }}">
+                    <img src="./images/logo.png" height="30">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item mx-2"><a class="nav-link" href="{{ path_for('landing') }}">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ path_for('categories') }}" role="button" data-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <div class="dropdown-menu">
+                                {% for category in data.categories %}
+                                    <a class="dropdown-item" href="{{ path_for('category', {"categoryID": category.categoryID}) }}">{{ category.title }}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        <li class="nav-item mx-2"><a class="nav-link" href="{{ path_for('contact') }}">Contact Us</a></li>
+                        <li class="nav-item mx-2"><a class="nav-link" href="{{ path_for('about') }}">About Us</a></li>
+                    </ul>
+                    <ul class="navbar-nav mx-auto">
+                        <form action="{{ path_for('search') }}" method="get" class="form-inline my-2 my-lg-0 mx-2">
+                            <div class="input-group mb-3">
+                                <input type="search" name="search" class="form-control" placeholder="Search" style="border: none; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                                <div class="input-group-append" style="border: none;">
+                                    <button class="btn btn-white" type="button" id="button-addon2" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-2"><a class="nav-link" href="{{ path_for('cart') }}"><i class="fa-solid fa-cart-shopping font-125"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <div class="hero">
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <center>
+                                <h1 class="heroTextOne">Natural Wellness</h1>
+                                <h1 class="heroTextTwo">for Skin and Body</h1>
+                                <h5 class="mt-5">Organic Skincare and Cosmetics from the heart of nature.</h5>
+                            </center>
+                            <br />
+                            <br />
+                            <center>
+                                <a href="{{ path_for('categories') }}" class="btn btn-green btn-lg">Shop Now</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div class="container my-5">
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="bold700">Featured Products</h3>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    {# Here #}
+                </div>
+            </div>         
+        </div>
+
+
+        <div class="container my-5">
+            <div class="row">
+                {% for product in data.featuredProducts %}
+                    <div class="col-12 col-sm-6 col-md-4 my-4">
+                        <div class="card px-2" style="border: none !important;">
+                            <a href="{{ path_for('product',{"productID": product.productID}) }}">
+                                <img src="{{ base_url() }}/images/{{ product.image }}.jpg" style="height: 250px; border-radius: 15px;" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body" style="padding: 0;">
+                                <div class="row mt-4">
+                                    <div class="col-8">
+                                        <a href="{{ path_for('product',{"productID": product.productID}) }}" class="card-title text-black font-125">{{ product.title }}</a>
+                                    </div>
+                                    <div class="col-4">
+                                        <div align="right">
+                                            <h5 class="card-title text-green">{{ product.price }} Br.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="card-text" style="overflow: hidden; white-space: nowrap;">{{ product.excerpt }}</p>
+                                <a href="{{ path_for('addToCart',{"productID": product.productID}) }}" class="btn btn-outline-green btn-rounded" style="color: #166F22 !important;"><i class="fa-solid fa-cart-shopping mr-3"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <br />
+        <div class="zeroWaste py-5">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="col-md-6">
+                        <center>
+                            <h2 class="text-white">Welcome to Zero Waste Ecopia</h2>
+                            <p class="text-white mt-5 bold400">Ecopia food today covers almost all part of Ethiopia and planning to expand to other African countries. We have been selling our organic mango, papaya, Guva, plum jam since 2008. Our organic food harvested and processed with our communities in 14 different part of Ethiopia.</p>
+                            <a href="{{ path_for('categories') }}" class="btn btn-warning btn-lg mt-5">Shop Now</a>
+                        </center>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <img src="{{ base_url() }}/images/zeroWaste.jpg" class="img-fluid" style="border-radius: 15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br />
+        <br />
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <h3>Blog and Articles</h3>
+                    </center>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="card mb-3" style="width: 100%;">
+                    <div class="row no-gutters">
+                        <div class="col-md-7">
+                            <div class="card-body p-5">
+                                <h4 class="card-title bold600">Ecopia tour with Dr. Mitslal Kifleyesus</h4>
+                                <p class="card-text">
+                                    I'm on tour with Gartenlust again this year . You can see the program via the following link. I'm really looking forward to meeting you at my stand for my lectures and discussions. If you have any special concerns or need help with pain relief, I'm also happy to help. I look forward to seeing you soon! <br /> <br />  Best regards,
+                                </p>
+                                <div class="card-body">
+                                    <spam class="card-link">Oct 22, 2023</spam>
+                                    <a href="#" class="card-link">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <img src="{{ base_url() }}/images/mitslal.jpg" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <br />
+        <footer class="footer py-5 mt-5">
+            <div class="container   ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="{{ base_url() }}/images/logo.png">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="text-white mt-3">
+                            Legehar, Kirkos
+                            <br />
+                            Addis Ababa, Ethiopia
+                            <br />
+                            info@ecopia-cosmetics.com
+                        </p>
+                        <br />
+                        <a class="socialLinks mr-3"><i class="fa-brands fa-facebook-f text-white"></i></a>
+                        <a class="socialLinks mr-3"><i class="fa-brands fa-instagram text-white"></i></a>
+                        <a class="socialLinks mr-3"><i class="fa-brands fa-tiktok text-white"></i></a>
+                        <a class="socialLinks mr-3"><i class="fa-brands fa-telegram text-white"></i></a>
+                        <br />
+                        <br />
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <center>
+                                    <ul class="links">
+                                        <li><a href="{{ path_for('landing') }}" class="text-white">Home</a></li>
+                                        <li><a href="{{ path_for('about') }}" class="text-white">About</a></li>
+                                        <li><a href="{{ path_for('contact') }}" class="text-white">Contact</a></li>
+                                        <li><a href="{{ path_for('categories') }}" class="text-white">Shop</a></li>
+                                    </ul>
+                               </center>
+                            </div>
+                            <div class="col-md-4">
+                                <form class="form-inline">
+                                    <p class="text-white">Get the Freshest news from us.</p>
+                                    <div class="input-group mb-3">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" required />
+                                        <div class="input-group-prepend">
+                                            <input class="btn btn-dgrey" type="submit" value="Subscribe">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12" style="border-top: 0.5px solid #ffffff;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="links mt-3">
+                                    <li><a href="{{ path_for('terms') }}" class="text-white">Terms</a></li>
+                                    <li><a href="{{ path_for('privacy') }}" class="text-white">Privacy</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <div align="right">
+                                    <span class="mt-3 text-white">&copy; 2024 Ecopia</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    </body>
+</html>

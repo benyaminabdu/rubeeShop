@@ -1,0 +1,71 @@
+.navbar-landing {
+    background-color: transparent;
+    padding-top: 20px;
+}
+.navbar-landing .navbar-brand,
+.navbar-landing .navbar-text {
+    color: #000000;
+}
+.navbar-landing .navbar-nav .nav-link {
+    color: #000000;
+    transition: all 0.5s;
+}
+.navbar-landing .nav-item.active .nav-link,
+.navbar-landing .nav-item:focus .nav-link,
+.navbar-landing .nav-item:hover .nav-link {
+    color: #166F22;
+    font-weight: 600;
+    transition: all 0.5s;
+}
+
+
+.wrapper {
+    background-image: url('../images/bg.svg');
+    /* background-image: linear-gradient(
+        rgba(0, 0, 0, 0.1), 
+        rgba(0, 0, 0, 0.1)
+      ), url('../images/bg.svg'); */
+    min-height: 100vh;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.hero {
+    width: 100%;
+    min-height: 80vh;
+}
+
+
+.heroTextOne {
+    font-size: 80px;
+    font-weight: 900;
+    color: #166F22;
+    text-align: center;
+    text-justify: inter-word;
+    text-transform: uppercase;
+}
+.heroTextTwo {
+    font-size: 60px;
+    font-weight: 900;
+    color: #166F22;
+    text-align: center;
+    text-justify: inter-word;
+    text-transform: uppercase;
+}
+
+
+.zeroWaste {
+    background: url('../images/zeroWaste.svg');
+    background-size: cover;
+    background-origin: center;
+}
+
+
+@media only screen and (max-width: 988px) {
+    .heroTextOne {
+        font-size: 50px;
+    }
+    .heroTextTwo {
+        font-size: 35px;
+    }
+}

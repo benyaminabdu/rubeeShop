@@ -1,0 +1,117 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path_for('admin.products') }}" class="text-black">Products</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products.details',{'productID': data.product.productID}) }}" class="text-rubee">{{ data.product.title }}</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6">
+                <div align="right">
+                    <a href="{{ path_for('admin.products.details', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Details</a>
+                    <a href="{{ path_for('admin.products.price', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Prices</a>
+                    <a href="{{ path_for('admin.products.inventory', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Inventory</a>
+                    <a href="{{ path_for('admin.products.media', {'productID': data.product.productID }) }}" class="btn btn-accent ml-2">Media</a>
+                    <a href="{{ path_for('admin.products.variance', {'productID': data.product.productID }) }}" class="btn btn-dgrey ml-2">Variance</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-5 mt-4">
+                <h5>Main Picture</h5>
+                <img src="{{ base_url() }}/images/{{ data.product.image }}.jpg" class="img-fluid mt-3" />
+                <br /><br />
+                <button type="button" class="btn btn-accent btn-block" data-toggle="modal" data-target="#changeImage">
+                    Change Image
+                </button>
+                <div class="modal fade" id="changeImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form action="{{ path_for('admin.products.changeImage') }}" method="post" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="display: none;">
+                                        <select name="productID">
+                                            <option value="{{ data.product.productID }}">{{ data.product.productID }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label>Select new Image</label>
+                                        <br />
+                                        <input type="file" name="img" required/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-accent" value="Save Changes">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <div align="right">
+                    <button type="button" class="btn btn-accent" data-toggle="modal" data-target="#addImage">
+                        Add Images +
+                    </button>
+                    <div class="modal fade" id="addImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="{{ path_for('admin.products.addProductImage') }}" method="post" enctype="multipart/form-data">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Images</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div style="display: none;">
+                                            <select name="productID">
+                                                <option value="{{ data.product.productID }}">{{ data.product.productID }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <input type="file" name="image[]" multiple required/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-accent" value="Save Changes">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    {% for image in data.productImages %}
+                        <div class="col-md-6">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ base_url() }}/images/{{ image.image }}.jpg" class="card-img-top" alt="..." style="height: 200px;">
+                                <div class="card-body">
+                                    <div align="center">
+                                        <a href="{{ path_for('admin.products.deleteImage', {"productID": image.productID,"imageID": image.imageID}) }}" class="card-link" style="color: red;">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

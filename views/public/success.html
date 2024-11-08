@@ -1,0 +1,26 @@
+{% extends "public/layout.html" %}
+
+{% block content %}
+
+    <div class="container my-5">
+        <div class="row my-5">
+            <div class="card mb-3" style="width: 100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-7">
+                        <div class="card-body p-5">
+                            <h4 class="card-title bold600">Transaction Successfull</h4>
+                            <p class="card-text">
+                                You'll get Confirmation Email Shortly
+                            </p>
+                            <a href="{{ path_for('landing') }}" class="btn btn-green">Home</a>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{{ base_url() }}/images/mitslal.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

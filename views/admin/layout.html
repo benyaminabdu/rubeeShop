@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <title>Commerce - Admin</title>
+        <link rel="stylesheet" href="{{ base_url() }}/css/sidebar.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/adminTheme.css">
+        <link href="{{base_url()}}/css/datatable.css" rel="stylesheet">
+    </head>
+    <body>
+        
+        <div class="wrapper">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <br />
+                    <h3>Commerce</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <li><a href="{{ path_for('admin.dashboard') }}"><i class="fa-solid fa-grip-vertical mr-2"></i> Dashboard</a></li>
+                    <li><a href="{{ path_for('admin.products') }}"><i class="fa-solid fa-boxes-stacked mr-2"></i> Products</a></li>
+                    <li><a href="{{ path_for('admin.categories') }}"><i class="fa-solid fa-list mr-2"></i>Categories</a></li>
+                    <li>
+                        <a href="#orders" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fa-solid fa-clipboard-check mr-2"></i>Orders</a>
+                        <ul class="collapse list-unstyled" id="orders">
+                            <li><a href="{{ path_for('admin.orders.pending') }}">Pending</a></li>
+                            <li><a href="{{ path_for('admin.orders.fulfilled') }}">Fullfilled</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa-solid fa-ticket mr-2"></i> Coupons</a></li>
+                    <li><a href="#"><i class="fa-solid fa-blog mr-2"></i> CMS</a></li>
+                    <li><a href="#"><i class="fa-solid fa-users mr-2"></i> Users</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chart-simple mr-2"></i> Analytics</a></li>
+                </ul>
+            </nav>
+
+            <div id="content">
+        
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="btn btn-black">
+                            <i class="fas fa-align-left mr-2"></i>
+                            <span>Toggle Sidebar</span>
+                        </button>
+                        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-align-justify"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item active"><a class="nav-link" href="{{ path_for('logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+
+                {% block content %}{% endblock %}
+
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+        {# Datatables #}
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+            $(document).ready(function() {
+                $('#table').DataTable();
+            });
+        </script>
+
+    </body>
+</html>

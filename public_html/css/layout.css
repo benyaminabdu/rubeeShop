@@ -1,0 +1,19 @@
+.navbar-layout {
+    background-color: #ffffff;
+    padding-top: 20px;
+}
+.navbar-layout .navbar-brand,
+.navbar-layout .navbar-text {
+    color: #000000;
+}
+.navbar-layout .navbar-nav .nav-link {
+    color: #000000;
+    transition: all 0.5s;
+}
+.navbar-layout .nav-item.active .nav-link,
+.navbar-layout .nav-item:focus .nav-link,
+.navbar-layout .nav-item:hover .nav-link {
+    color: #166F22;
+    font-weight: 600;
+    transition: all 0.5s;
+}

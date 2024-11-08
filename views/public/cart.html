@@ -1,0 +1,86 @@
+{% extends "public/layout.html" %}
+
+{% block content %}
+
+    <div class="cardCart mt-5">
+        <div class="row">
+            <div class="col-md-12 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col"><h4><b>Cart</b></h4></div>
+                        <div class="col align-self-center text-right text-muted">
+                            {{ data.cartCount }} items
+                        </div>
+                    </div>
+                </div>    
+                <div class="row border-top border-bottom">
+                    {% for cart in data.cartData %}
+                        <div class="row main align-items-center my-3">
+                            <div class="col-6 col-sm-6 col-md-2">
+                                <a href="{{ path_for('product', {productID: cart.product.productID}) }}">
+                                    <img class="img-fluid" style="width: 100px;" src="{{ base_url() }}/images/{{ cart.product.image }}.jpg">
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-3">
+                                <a href="{{ path_for('product', {productID: cart.product.productID}) }}">
+                                    <div class="row text-black font-125">{{ cart.product.title }}</div>
+                                </a>
+                                <div class="row"><span class="font-75">{{ cart.product.price }} (Unit Price)</span></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-5">
+                                <div class="mobile-only my-4"></div>
+                                <center>
+                                    <div class="input-box" style="display: flex;">
+                                        <form method="post" action="{{ path_for('cartMinusItem') }}">
+                                            <div style="display: none;">
+                                                <select name="cartID" class="form-control"><option>{{ cart.cartID }}</option></select>
+                                                <select name="productID" class="form-control"><option>{{ cart.productID }}</option></select>
+                                            </div>
+                                            <input type="submit" class="btn btn-default" value="-">
+                                        </form>
+                                        <button class="btn btn-outline-dark">{{ cart.itemCount }}</button>
+                                        <form method="post" action="{{ path_for('cartPlusItem') }}">
+                                            <div style="display: none;">
+                                                <select name="cartID" class="form-control"><option>{{ cart.cartID }}</option></select>
+                                                <select name="productID" class="form-control"><option>{{ cart.productID }}</option></select>
+                                            </div>
+                                            <input type="submit" class="btn btn-default" value="+">
+                                        </form
+                                    </div>
+                                </center>
+                                <div class="mobile-only my-4"></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-2">
+                                {{ cart.product.price * cart.itemCount }} 
+                                <span class="close">
+                                    <form method="post" action="{{ path_for('deleteFromCart') }}">
+                                        <select name="cartID" style="display: none;"><option>{{ cart.cartID }}</option></select>
+                                        <select name="productID" style="display: none;"><option>{{ cart.productID }}</option></select>
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="back-to-shop"><a href="{{ path_for('categories') }}" class="text-black">&leftarrow;<span class="text-muted"> Back to shop</span></a></div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="mt-4">{{ data.totalPrice }} Br.  Total Price </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{{ path_for('order') }}" class="btn btn-green btn-block mt-3">Checkout</a>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

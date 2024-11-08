@@ -1,0 +1,59 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path_for('admin.categories') }}" class="text-black">Categories</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.categories.details',{'categoryID': data.category.categoryID}) }}" class="text-rubee">{{ data.category.title }}</a></li>
+                        <li class="breadcrumb-item active"><a class="text-black">Subcategories</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6">
+                <div align="right">
+                    <a href="{{ path_for('admin.categories.createSubcategory',{'categoryID': data.category.categoryID }) }}" class="btn btn-dgrey">Create SubCategory +</a>
+                    <a href="{{ path_for('admin.categories.details', {'categoryID': data.category.categoryID }) }}" class="btn btn-dgrey ml-2">Settings</a>
+                    <a href="{{ path_for('admin.categories.subcategories', {'categoryID': data.category.categoryID }) }}" class="btn btn-accent ml-2">SubCategories</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <table class="table table-hover" id="table">
+                    <thead>
+                        <tr>
+                            <td>Subcategory ID</td>
+                            <td>Title</td>
+                            <td>Status</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subcategory in data.subcategories %}
+                            <tr>
+                                <td>{{ subcategory.subcategoryID }}</td>
+                                <td>{{ subcategory.title }}</td>
+                                <td>
+                                    {% if subcategory.isActive == 1 %}
+                                        <span style="color: green;">Active</span>
+                                    {% else %}
+                                        <span style="color: red;">Inactive</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path_for('admin.categories.subcategory.details',{"categoryID": subcategory.parentID,"subcategoryID": subcategory.subcategoryID}) }}" class="btn btn-dgrey btn-sm">Open</a>
+                                    <a href="{{ path_for('admin.subcategory.toggle',{"subcategoryID": subcategory.subcategoryID}) }}" class="btn btn-dgrey btn-sm">Toggle</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>       
+        </div>
+    </div>
+
+{% endblock %}

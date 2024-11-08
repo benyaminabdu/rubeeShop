@@ -1,0 +1,38 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products') }}" class="text-black">Products</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products.create') }}" class="text-rubee">Create Product</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <br />
+        <div class="row my-3">
+            <div class="col-md-12">
+                <h4>Please Select a <span class="text-accent bold700">Category</span> for this Product</h4>
+            </div>
+        </div>
+        <div class="row">
+            {% for category in data.categories %}
+                <div class="col-md-4 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ category.title }}</h4>
+                            <p class="card-text">{{ category.description }}</p>
+                            <a href="{{ path_for('admin.products.createII', {"categoryID": category.categoryID}) }}" class="btn btn-accent btn-sm mr-2">Use Category</a>
+                            <a href="{{ path_for('admin.categories.details', {"categoryID": category.categoryID}) }}" class="btn btn-white btn-sm">Category Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

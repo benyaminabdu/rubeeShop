@@ -1,0 +1,11 @@
+.wrapper {
+    background-color: #e0455f;
+    background-image: linear-gradient(147deg, #e0455f 0%, #44000b 74%);
+    width: 100%;
+    height: 100vh;
+}
+
+.login-box {
+    background: #ffffff;
+    border-radius: 15px;
+}   

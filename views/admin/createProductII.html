@@ -1,0 +1,45 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products') }}" class="text-black">Products</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ path_for('admin.products.create') }}" class="text-rubee">Create Product</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <br />
+        <div class="row my-3">
+            <br />
+            <br />
+            <div class="col-md-12">
+                <h4>Please Select a <span class="text-accent bold700">Subcategory</span> for this Product</h4>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-md-5">
+                <a href="{{ path_for('admin.products.createIII', {"categoryID": data.categoryID, "subcategoryID": "skip" }) }}" class="btn btn-warning">Skip Subcategory Selection</a>
+            </div>
+        </div>
+        <div class="row">
+            {% for subcategory in data.subcategories %}
+                <div class="col-md-4 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ subcategory.title }}</h4>
+                            <p class="card-text">{{ subcategory.description }}</p>
+                            <a href="{{ path_for('admin.products.createIII', {"categoryID": subcategory.parentID, "subcategoryID": subcategory.subcategoryID }) }}" class="btn btn-accent btn-sm mr-2">Use Subcategory</a>
+                            <a href="{{ path_for('admin.categories.subcategory.details', {"categoryID": subcategory.parentID,"subcategoryID": subcategory.subcategoryID}) }}" class="btn btn-white btn-sm">Subcategory Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
