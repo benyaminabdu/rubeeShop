@@ -35,7 +35,7 @@
                 <h6>{{ data.product.excerpt }}</h6>
                 <h6 class="bold400 mt-4" style="text-align: justify;">{{ data.product.description }}</h6>
                 <h1 class="my-4">{{ data.product.price }} <span class="font-75">Br.</span></h1>
-                <a href="{{ path_for('addToCart',{"productID": data.product.productID}) }}" class="btn btn-outline-green btn-lg btn-rounded mr-3 mt-3" style="color: #166F22 !important;"><i class="fa-solid fa-cart-shopping mr-3"></i> Add to Cart</a>
+                <a href="{{ path_for('addToCart',{"productID": data.product.productID}) }}" class="btn btn-outline-green btn-lg btn-rounded mr-3 mt-3" style="color: #e0115f !important;"><i class="fa-solid fa-cart-shopping mr-3"></i> Add to Cart</a>
                 <a href="{{ path_for('buyNow',{"productID": data.product.productID}) }}" class="btn btn-rubee btn-lg btn-rounded mr-3 mt-3"><i class="fa-solid fa-cart-shopping mr-3"></i> Buy Now</a>
             </div>
         </div>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <p class="card-text" style="overflow: hidden; white-space: nowrap;">{{ product.excerpt }}</p>
-                            <a href="{{ path_for('addToCart',{"productID": product.productID}) }}" class="btn btn-outline-green btn-rounded" style="color: #166F22 !important;"><i class="fa-solid fa-cart-shopping mr-3"></i> Add to Cart</a>
+                            <a href="{{ path_for('addToCart',{"productID": product.productID}) }}" class="btn btn-outline-green btn-rounded" style="color: #e0115f !important;"><i class="fa-solid fa-cart-shopping mr-3"></i> Add to Cart</a>
                         </div>
                     </div>
                 </div>

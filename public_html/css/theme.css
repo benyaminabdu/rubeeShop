@@ -84,7 +84,7 @@
 
 .btn-white {
     background-color: #FFFFFF;
-    color: #166F22;
+    color: #e0115f;
     transition: all 0.5s;
 }
 
@@ -92,7 +92,7 @@
 .btn-white:active,
 .btn-white:visited,
 .btn-white:focus {
-    background-color: #166F22;
+    background-color: #e0115f;
     color: #ffffff;
     transition: all 0.5s;
 }
@@ -107,15 +107,6 @@
 }
 
 .btn-outline-green {
-    border: 1px solid #166F22;
-    color: #166F22 !important;
+    border: 1px solid #e0115f;
+    color: #e0115f !important;
 }
-
-/* .btn-outline-green:hover, 
-.btn-outline-green:active,
-.btn-outline-green:visited,
-.btn-outline-green:focus {
-    background-color: #166F22 !important;
-    color: #ffffff !important;
-} */
-

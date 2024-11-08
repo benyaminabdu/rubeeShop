@@ -380,13 +380,13 @@
 
             $santimPay =  new SantimPay($GATEWAY_MERCHANT_ID, $PRIVATE_KEY_IN_PEM);
             
-            $successRedirectUrl = 'https://ecopia-cosmetics.com/success';
-            $failureRedirectUrl = 'https://ecopia-cosmetics.com/failed';
+            $successRedirectUrl = 'https://rubee.et/success';
+            $failureRedirectUrl = 'https://rubee.et/failed';
 
-            $notifyUrl = 'https://ecopia-cosmetics.com/notify';
-            $cancelRedirectUrl = 'https://ecopia-cosmetics.com/cancel';
+            $notifyUrl = 'https://rubee.et/notify';
+            $cancelRedirectUrl = 'https://rubee.et/cancel';
 
-            $urlData = $santimPay->generatePaymentURL($paymentRef, $cartPrice, 'Ecopia Cosmetics Order', $successRedirectUrl, $failureRedirectUrl, $notifyUrl, $cancelRedirectUrl);
+            $urlData = $santimPay->generatePaymentURL($paymentRef, $cartPrice, 'Rubee Store Order', $successRedirectUrl, $failureRedirectUrl, $notifyUrl, $cancelRedirectUrl);
 
             $data = json_decode($urlData, true);
             $url = $data['url'];

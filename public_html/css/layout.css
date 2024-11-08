@@ -13,7 +13,7 @@
 .navbar-layout .nav-item.active .nav-link,
 .navbar-layout .nav-item:focus .nav-link,
 .navbar-layout .nav-item:hover .nav-link {
-    color: #166F22;
+    color: #e0115f;
     font-weight: 600;
     transition: all 0.5s;
 }
