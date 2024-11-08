@@ -60,8 +60,8 @@
 .btn-rubee:active,
 .btn-rubee:visited,
 .btn-rubee:focus {
-    background-color: #e0115f;
-    color: #FFFFFF;
+    background-color: #e0115f !important;
+    color: #FFFFFF !important;
 }
 
 .btn-dgrey,
@@ -69,8 +69,8 @@
 .btn-dgrey:active,
 .btn-dgrey:visited,
 .btn-dgrey:focus {
-    background-color: #505050;
-    color: #FFFFFF;
+    background-color: #505050 !important;
+    color: #FFFFFF !important;
 }
 
 .btn-lgrey,
@@ -78,23 +78,23 @@
 .btn-lgrey:active,
 .btn-lgrey:visited,
 .btn-lgrey:focus {
-    background-color: #9E9E9E;
-    color: #000000;
+    background-color: #9E9E9E !important;
+    color: #000000 !important;
 }
 
 .btn-white {
-    background-color: #FFFFFF;
-    color: #e0115f;
-    transition: all 0.5s;
+    background-color: #FFFFFF !important;
+    color: #e0115f !important;
+    transition: all 0.5s !important;
 }
 
 .btn-white:hover, 
 .btn-white:active,
 .btn-white:visited,
 .btn-white:focus {
-    background-color: #e0115f;
-    color: #ffffff;
-    transition: all 0.5s;
+    background-color: #e0115f !important;
+    color: #ffffff !important;
+    transition: all 0.5s !important;
 }
 
 .btn-black,
@@ -102,11 +102,11 @@
 .btn-black:active,
 .btn-black:visited,
 .btn-black:focus {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 .btn-outline-green {
-    border: 1px solid #e0115f;
+    border: 1px solid #e0115f !important;
     color: #e0115f !important;
 }
